@@ -1,0 +1,57 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This NoteBook is using Springer monograph template.
+% This .tex file is coding in utf-8
+% It is recomanded to compile this .tex file using XeLaTeX
+% Anything confused by this file, you can contact me on github.com
+% Good Luck, Have Fun.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[envcountsame,envcountchap]{svmono}
+
+\usepackage{makeidx}              % allows index generation
+\usepackage{graphicx}             % standard LaTeX graphics tool when including figure files
+\usepackage{multicol}             % used for the two-column index
+\usepackage[bottom]{footmisc}     % places footnotes at page bottom
+\usepackage{xeCJK}                % Chinese support
+\setCJKmainfont{等线}             % 中文字体设置
+\setmainfont{Cambria}             % set English font
+\usepackage{fullpage}
+% etc.
+
+\makeindex             % used for the subject index
+% please use the style svind.ist with
+% your makeindex program
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	
+	\title{Theoretical Physics in One Month\\
+	\small{Lectured by Tongzhe}}
+	%\subtitle
+	\maketitle
+	
+	\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\include{dedic}
+	\include{pref}
+	
+	\tableofcontents
+	
+	
+	\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\include{part1}
+	\include{chapter1}
+
+	%\appendix
+	%\include{appendix}
+	
+	\backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\include{reference}
+	\printindex
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+\end{document}
