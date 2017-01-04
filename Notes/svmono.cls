@@ -1,4 +1,4 @@
-% SVMONO DOCUMENT CLASS -- version 4.17 (31-Oct-06)
+% SVMONO DOCUMENT CLASS -- version 4.17 (31-Oct-06) Modified by S.Z. in line 1633：{\Large Springer\par} to \includegraphics[height=3cm]{wanmenlogo.png} %{\Large Springer\par}
 % Springer Verlag global LaTeX2e support for monographs
 %%
 %%
@@ -1630,7 +1630,7 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
     \vskip 1.5em               % Vertical space after date.
   \fi
  \vfill
- {\Large Springer\par}
+ \includegraphics[height=3cm]{wanmenlogo.png} %{\Large Springer\par}
 %\vskip 5\p@
 %\large
 %  Berlin\enspace Heidelberg\enspace New\kern0.1em York\\
