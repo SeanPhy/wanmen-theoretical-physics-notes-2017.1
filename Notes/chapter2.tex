@@ -1,0 +1,196 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This .tex file is coded in utf-8
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{复变函数}
+	以复数为变量的函数:)
+\section{为什么我们需要复变函数/复变函数能做什么}
+我们可以通过复变函数方法来相对简单的处理一些在实变函数微积分中难以处理的问题:
+\begin{enumerate}[fullwidth,itemindent=2em,label=(\arabic*)]
+	\item 复杂的实积分： $\int_{-\infty}^{\infty}\cos t^2 \mathrm{d}t$
+	\item 级数： $\sum_{n=1}^{+\infty}\sin n\theta = \frac{r\sin \theta}{1+r^2-2r\cos \theta}$
+	\item $\sum_{n=0}^{+\infty}\frac{\binom{2n}{n}}{7^n} = \sqrt{\frac{7}{3}}$
+	\item $f(x) = \frac{1}{1+x^2}$的Taylor展开只能在区间$(-1,1)$中收敛。
+\end{enumerate}
+
+	复数有非常广的应用范围,如：
+	\begin{enumerate}[fullwidth,itemindent=2em,label=(\arabic*)]
+		\item 量子力学Schrodinger方程：
+		\begin{equation}
+			\mathrm{i}\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V\psi
+		\end{equation}
+		\item Fourier变换：
+		\begin{equation}
+			\left\{
+			\begin{array}{ll}
+			G(k) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{\mathrm{i}kx}\mathrm{d}x\\
+			f(x) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}G(k)e^{-\mathrm{i}kx}\mathrm{d}x
+			\end{array}
+			\right.
+		\end{equation}
+		\item Laplace变换：
+		\begin{equation}
+		\left\{
+		\begin{array}{ll}
+		G(p) &= \int_{0}^{\infty}f(x)e^{-px}\mathrm{d}x\\
+		f(x) &\leftarrow G(p)
+		\end{array}
+		\right.
+		\end{equation}
+		\item 复分析
+	\end{enumerate}
+
+\section{复数}
+\subsection{定义}
+我们可以简单的定义：
+\begin{equation}
+z=a+b\mathrm{i}\ \ a,b\in \mathbb{R}
+\end{equation}
+
+复数是最大的数域。常见的数域如：$\mathbb{Q}=\left\{\frac{p}{q}\right\} \xrightarrow{\text{完备性}} \mathbb{R} \rightarrow \mathbb{C}$。同时，四元数不是数域，它不满足乘法交换律。
+\subsection{复数的性质}
+	几种等价描述：
+	\begin{enumerate}[fullwidth,itemindent=2em,label=(\arabic*)]
+		\item $a+b\mathrm{i}\ \ a,b\in \mathbb{R}$
+		\item Euler公式：$e^{\mathrm{i}\theta} = \cos \theta + \mathrm{i}\sin \theta$。对它的一种Naive的理解：Taylor展开：
+		\[e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}\]
+		\[\sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}\]
+		\[\cos x = 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}\]
+		将$x=\mathrm{i}\theta$代入这三个Taylor展开即可得到Euler公式。
+		
+	 	\indent	我们可以将$re^{\mathrm{i}\theta}$这种表示看成一种复数的“极坐标表示”。在这种表示下，我们会发现\textbf{辐角的多值性}： $\theta_0+2n\pi$代表同一个$\theta_0$。因此我们在处理复变函数时，必须要考虑到\textbf{多值性}的问题，如$\sqrt{z}$。            %此处想首行缩进，但\indent似乎不行？
+		\item 复数之所以为复数，其本质在于它的代数结构。因此，我们可以定义：
+			\begin{equation}
+			\mathbb{C} \equiv \left\{\left.\begin{pmatrix}
+			a  & b \\
+			-b & a
+			\end{pmatrix}\right|a,b\in \mathbb{R}
+			\right\}
+			\end{equation}
+		\end{enumerate}
+	我们发现：
+	\[\begin{pmatrix}a  & b \\-b & a\end{pmatrix} = a \begin{pmatrix}1 & 0 \\0 & 1\end{pmatrix}+b \begin{pmatrix}0 & 1 \\-1 & 0\end{pmatrix}\]
+	其中：
+	\[\begin{pmatrix}0 & 1 \\-1 & 0\end{pmatrix}\begin{pmatrix}0 & 1 \\-1 & 0\end{pmatrix} = -\begin{pmatrix}1 & 0 \\0 & 1\end{pmatrix} \]
+	完美重现了复数的结构。
+\subsection{复数的运算}
+\begin{gather}
+	z_1+z_2 = (a_1+a_2)+\mathrm{i}(b_1+b_2)\\
+	z_1 z_2 = (a_1 a_2-b_1 b_2)+\mathrm{i}(a_i b_2+a_2 b_1)=r_1 r_2 e^{i(\theta_1+\theta_2)}
+\end{gather}
+可以将乘以$z$看成一次防缩加旋转变换（模长放大$r$倍，辅角逆时针旋转$\theta$角）。
+\subsection{复共轭}
+\[z=a+b\mathrm{i} \Rightarrow \bar{z}=a-b\mathrm{i}\]
+运算：
+\begin{align}
+&\overline{z_1+z_2} = \overline{z_1}+\overline{z_2}\\
+&\overline{z_1/z_2} = \overline{z_1}/\overline{z_2}\\
+&\overline{\overline{z}} = z\\
+&\overline{z^n} = \bar{z}^n
+\end{align}
+
+$z$和$\overline{z}$可以看成独立变量。
+\subsection{尺规作图正十七边形}
+实际上就是求解$\sin \frac{\pi}{17}$的根号表达式。
+
+令$q=e^{\mathrm{i}\frac{\pi}{17}}$，令：
+\[s \equiv q+q^9+q^{9^2}+...+q^{9^7}\]
+\[s'\equiv q^3+q^{3^3}+q^{3^5}+...+q^{3^{15}}\]
+那么我们有：
+\[
+\left\{
+\begin{array}{c}
+s+s'=-1\\
+s\cdot s'=-4
+\end{array}
+\right.
+\]
+由此可以解得：
+\[
+\left\{
+\begin{array}{c}
+s = \frac{1}{2}(\sqrt{17}-1)\\
+s'= -\frac{1}{2}(\sqrt{17}+1)
+\end{array}
+\right.
+\]
+再拆$s$与$s'$为$m,m',n,n'$：
+\[m = q^1+q^{13}+q^{16}+q^4\]
+\[m' = q^9+q^{15}+q^8+q^2\]
+\[n = q^3+q^5+q^{14}+q^{12}\]
+\[n' = q^{10}+q^{11}+q^7+q^6\]
+这样：
+\[
+\left\{
+\begin{array}{l}
+m+m' = s \ \ ;m\cdot m'=-1\\
+n+n' = s' \ \ ;n\cdot n'=-1
+\end{array}
+\right.
+\]
+可以解出：
+\[m = \frac{1}{2}(s+\sqrt{s^2+4})\ \ \ \ n = \frac{1}{2}(s'+\sqrt{s'^2+4})\]
+再拆$m,n$，令
+\[r = q+q^{16}\]
+\[r' = q^{13}+q^4\]
+这样：
+\[
+\left\{
+\begin{array}{l}
+r+r'=m\\
+rr'=n
+\end{array}
+\right.
+\]
+由此可以解得：
+\[r = \frac{m+\sqrt{m^2-4n}}{2}\]
+又：
+\[r=2 \cos \frac{\pi}{17}\]
+这样就得到了$\cos \frac{\pi}{17}$的根号表达式。
+
+\textbf{思考：还有哪些正$n$边形可以类似的求解？}
+
+\section{复变函数}
+复变函数$z\in\mathbb{C},f(z)\in\mathbb{C}$。可以重新表示为$z=x+\mathrm{i}y,f(z)=u(x,y)+\mathrm{i}v(x,y);x,y,u,v\in\mathbb{R}$，这样一对$u(x,y),v(x,y)$就唯一确定了一个复变函数$f(z)$。
+\subsection{极限、连续、导数的定义}
+定义：若$f(z)$在$z\rightarrow z_0$时有极限$L$:
+\[\lim\limits_{z\rightarrow z_0}f(z) = L\]
+则$\forall\epsilon,\exists\delta$ s.t. 当$\left|z-z_0\right|<\delta$，有$\left|f(z)-L\right|<\epsilon$
+
+定义：$f(z)$在$z_0$处连续,若：
+\begin{equation}
+\lim\limits_{z\rightarrow z_0}f(z) = f(z_0)
+\end{equation}
+
+定义：$f(z)$在$z_0$处的导数为：
+\begin{equation}
+f'(z_0) = \lim\limits_{z\rightarrow z_0}\frac{f(z)-f(z_0)}{z-z_0}
+\end{equation}
+
+定义：$f(z)$在$z_0$处的二阶导数为：
+\begin{equation}
+f''(z_0) = \lim\limits_{z\rightarrow z_0}\frac{f'(z)-f'(z_0)}{z-z_0}
+\end{equation}
+
+"若$f(z)$在某点$z_0$有1阶导数，那么它在这点存在n阶导数"【暂不证明】
+
+\subsection{Cauchy-Riemann关系}
+
+C-R关系是导数存在的必要条件。如果其中$u(x,y)$和$v(x,y)$均可微（即四个偏导数$\partial u/\partial x,\partial u/\partial y,\partial v/\partial x,\partial v/\partial y$均存在且连续），那么C-R关系同时为导数存在的充分条件。
+
+求证：若$f(z)$在区域内某点$z_0$处可导，则C-R关系成立。
+
+证明：选取沿实轴和沿虚轴两个特殊方向逼近，得到导数，那么：
+	\[\lim\limits_{\Delta x\rightarrow 0}\frac{\Delta u+\mathrm{i}\Delta v}{\Delta x} = \lim\limits_{\mathrm{i}\Delta y\rightarrow 0}\frac{\Delta u+\mathrm{i}\Delta v}{i\Delta y}\]
+	实部虚部分别相等，即可得到Cauchy-Riemann关系：
+	\begin{equation}
+	\left\{\begin{array}{l}
+	\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}\\
+	\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+	\end{array}
+	\right.
+	\end{equation}
+
+
+
