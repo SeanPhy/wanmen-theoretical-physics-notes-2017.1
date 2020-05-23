@@ -34,7 +34,7 @@
 
 有理数的定义：$\mathbb{Q} = \{p/q|\ p,q\in \mathbb{Z}\}$。有理数和无理数都很稠密：任一区间都有无穷多的有理数和无理数。
 
-戴德金分划：将有理数切开：
+戴德金分划：将\textcolor{red}{有理数}切开：
 \begin{enumerate}[fullwidth,itemindent=2em]
 	\item $\mathbb{Q} = A_1\cup A_2$
 	\item $A_1\cap A_2 = \emptyset$
@@ -95,7 +95,7 @@ $\mathbb{R}^n$的元素个数：$\aleph_1$。
 
 $\aleph_2?\Rightarrow(0,1)$区间内实函数的个数。
 
-\subsection{一点点测度论"a little bite of Measure Theory"}
+\subsection{一点点测度论}
 \label{yddcdl}
 
 为何$\mathbb{R}$元素个数远多于$\mathbb{Q}$？
@@ -347,13 +347,14 @@ $n \in \mathbb{N},\ x \in \mathbb{R};\ n \rightarrow +\infty$
 \[1+\frac{1}{2^2}+\frac{1}{3^2}+\frac{1}{4^2}+\frac{1}{5^2}+... = \frac{\pi^2}{6}\]
 收敛到0.001精确度需要$1000$项。
 
-\subsection{Shanks Transformation}
+\subsection{Shanks变换}
 \label{st}
 
 如何加速：
 \[1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+...\]
+的收敛速度？
 其和的数值表如下：\\
-\begin{table}
+\begin{table}[H]
 	\centering
 	\begin{tabular}{c|c}
 		$n$  &  $S_n$\\
@@ -430,7 +431,7 @@ $n \in \mathbb{N},\ x \in \mathbb{R};\ n \rightarrow +\infty$
 
 由此我们可以感受到，多次Shanks变换可以大大加快级数收敛的速度。
 
-\subsection{Richardson Extrapolation}
+\subsection{Richardson推断}
 \label{re}
 
 单调收敛级数，例如：
@@ -459,15 +460,16 @@ R_3 = \frac{(N+3)^3 S_{N+3} - 3(N+2)^3 S_{N+2} + 3(N+1)^3 S_{N+1} - N^3 S_N}{6}
 
 \subsection{如何拆解困难问题为级数求和}
 
-
-将一个超级难题等效转化为无数个简单问题。
+将一个超级难题等效转化为无数个简单问题，基本上就是\textcolor{red}{微扰论}。
 
 \begin{enumerate}[fullwidth,itemindent=2em]
 	\item
 		对原始难题引入参数$\epsilon$（乘法的方式引入）
 	\item
 		将原始难题之解用$\epsilon$的幂级数展开
-		\[x(\epsilon)=\sum_{n=0}^{+\infty}a_n \epsilon ^n\]
+		\begin{align}
+			x(\epsilon)=\sum_{n=0}^{+\infty}a_n \epsilon ^n
+		\end{align}
 	\item
 		令$\epsilon = 1$并对级数求和，得到原来的解。
 \end{enumerate}
@@ -484,12 +486,85 @@ R_3 = \frac{(N+3)^3 S_{N+3} - 3(N+2)^3 S_{N+2} + 3(N+1)^3 S_{N+1} - N^3 S_N}{6}
 		\[x=\sum_{n=0}^{+\infty}a_n \epsilon ^n\]
 		现在求$a_n$：\\
 		若$\epsilon=0$，可解得$a_0=1$。将$x$代入$x^5-\epsilon x = 1$两边对应幂级数系数相等，最终可以求得：
-		\[a_0=1,a_1=-\frac{1}{5},a_2=-\frac{1}{25},a_3=-\frac{1}{125},a_4=0,...\]
+		\[a_0=1,\ a_1=-\frac{1}{5},\ a_2=-\frac{1}{25},\ a_3=-\frac{1}{125},\ a_4=0,...\]
 	\item
 		$x=\sum_{n=0}^{+\infty}a_n \epsilon ^n$，令$\epsilon=1$可得：
 		\[x \approx 0.752\]
 		而精确求解可得$x\approx0.754878$，good!
 \end{enumerate}
+思考：为何可以合法的将\(\epsilon\)取为1，级数此时是否收敛？
+
+重新审视例题，若我们取：
+\[\epsilon x^5-x=1\]
+同样令：
+\[x=\sum_{n=0}^{+\infty}a_n \epsilon ^n\]
+代入并比较系数可得：
+\[a_0=1,\ a_1=-1,\ a_2=5,\ a_3=-35,...\]
+此时级数发散，无法求解此方程。但有时，我们会考虑求发散级数之和。
+
+\subsection{Casimir效应}
+金属板之间的真空吸引，是一种量子场论效应，且已经被实验所证实。
+\[\sum_{i=1}^n i=-\frac{1}{12}\]
+
+\subsection{发散级数求和}
+\subsubsection{引子}
+考虑加法的定义,加法满足:
+\begin{enumerate}[fullwidth,itemindent=2em,label=(\arabic*)]
+	\item 结合律（复数上加法构成群）:\((a+b)+c=a+(b+c)\) 
+	\item 交换律（复数上加法群是Abel群）:  \(a+b=b+a\)
+	\item 分配律（复数上加法和乘法构成域）:  \(a(b+c)=ab+ac\)
+\end{enumerate}
+例：求和：
+\begin{align}
+	S=1-1+1-1+1-1+...
+	\label{1+-+-}
+\end{align}
+法一：应用结合律：
+\[S=(1-1)+(1-1)+(1-1)+...=0+0+0+...=0\]
+法二：应用结合律：
+\[S=1+(-1+1)+(-1+1)+(-1+1)...=1+0+0+0+...=1\]
+矛盾！这表明在结合律存在的情况下，发散级数求和存在逻辑矛盾；同时也注意到交错级数交换求和可以收敛至任意数，我们必须考虑\textcolor{red}{同时放弃结合律与交换律}。
+
+% 此时我们面临发散级数求和问题：
+% \begin{align*}
+% 	&1-1+1-1+1-1+...\\
+% 	&1+0-1+1+0-1+1+0-1+...\\
+% 	&1+2+4+8+...
+% \end{align*}
+
+在18世纪Euler提出，我们可以想办法将级数看作为某函数在某点的级数展开，这样可以通过此函数在这点的函数值求出级数和。对级数(\ref{1+-+-})，我们可以发现：
+\[f(x)=1+x+x^2+x^3+...=\frac{1}{1-x}\]
+在\(x=-1\)时，还原为此级数，这样计算得到\(S=f(-1)=\frac{1}{1-(-1)}=\frac{1}{2}\)。但此方法存在收敛区间的问题（\(f(x)\)在\((-1,1)\)收敛）。
+
+在19世纪Borel提出\footnote{
+	这里我们用到了如下结论（\(\Gamma\)函数）：
+	\[\Gamma(N+1)=\int_0^{+\infty}e^{-t}t^N\dd t=N!\]
+	证明：考虑积分： 
+	\[f(\alpha)=\int_0^{+\infty}e^{-\alpha t}\dd t=\frac{1}{\alpha}\]
+	这样
+	\[f'(\alpha)=-\int_0^{+\infty}e^{-\alpha t}t\dd t=-1\times\frac{1}{\alpha^2}\]\\
+	\[f''(\alpha)=\int_0^{+\infty}e^{-\alpha t}t^2\dd t=1\times2\times\frac{1}{\alpha^3}\]
+	以此类推即可得到：
+	\[f^{(N)}(\alpha)=(-)^N\int_0^{+\infty}e^{-\alpha t}t^N\dd t=(-)^N N!\frac{1}{\alpha^{N+1}}\]
+	令\(\alpha=1\)，原命题得证。}：
+\begin{align*}
+	\sum_{n=0}^{+\infty}a_n&=\sum_{n=0}^{+\infty}a_n\cdot\frac{\int_0^{+\infty}e^{-t}t^n\dd t}{n!}\\
+	&=\int_0^{+\infty}e^{-t}\left(\sum_{n=0}^{+\infty}\frac{a_n t^n}{n!}\right)\dd t
+\end{align*}
+这样，在级数(\ref{1+-+-})中，我们有：
+\begin{align*}
+	S&=\int_0^{+\infty}e^{-t}\left(\sum_{n=0}^{+\infty}\frac{(-)^{n} t^n}{n!}\right)\dd t\\
+	&=\int_0^{+\infty}e^{-t}\cdot e^{-t}\dd t\\
+	&=\frac{1}{2}
+\end{align*}
+这里应注意到Borel的方法收敛性更好。
+
+\subsubsection{本质和(Generic Sum)}
+本质和不同于通常所述的柯西和。
+
+定义：
+
+
 
 \begin{center}
 	****************************************************************
@@ -505,161 +580,7 @@ R_3 = \frac{(N+3)^3 S_{N+3} - 3(N+2)^3 S_{N+2} + 3(N+1)^3 S_{N+1} - N^3 S_N}{6}
 	
 \end{center}
 
-\section{变分法与Euler-Lagrange方程}
 
-%含目标的优化，给出所求解的函数是很重要的问题。
-%求函数的极值与求泛函的极值$\leftrightarrow\aleph_1$ 与 $\aleph_2$
-
-如何寻找极值函数？
-
-\subsection{最速降线}
-
-问题：如何用一条光滑的滑轨连接A,B两点，使得某个小球沿此光滑轨道从A到B时间最短。如图：
-
-\begin{figure}[htbp!]
-	\centering
-	\begin{tikzpicture}
-		\node[above,left](A) at (0,0) {A};
-		\node[below,right](B) at (pi,-2){B};
-		\node[right](x) at (pi + 0.7,0){$x$};
-		\node[below](y) at (0,-2-0.5){$y$};
-		\draw[->] (0,0) -- (pi + 0.7,0);
-		\draw[->] (0,0) --(0,-2-0.5);
-		\draw (0,0) -- (0,-2) -- (pi,-2) -- cycle;
-		\draw[green] (0,0) .. controls (-0.2,-2) and (pi-0.5,-1.3)  .. (pi,-2);
-		\draw[blue] (0,0) .. controls (1,-1) and (pi-0.5,-2.2)  .. (pi,-2);
-		\draw[red] plot[domain=0:pi] ({\x - sin(\x r)},{-1 + cos(\x r)});
-	\end{tikzpicture}
-	\caption{哪个是最速降线？}
-\end{figure}
-
-所需总时间：
-\[T = \int_{A}^{B} \mathrm{d}T = \int_{A}^{B} \frac{\mathrm{d}L}{v} = \int_{A}^{B} \frac{\sqrt{\mathrm{d}x^2+\mathrm{d}y^2}}{\sqrt{2gy}} = \int_{A}^{B} \frac{\sqrt{1+y'^2}}{\sqrt{2gy}}\mathrm{d}x\]
-抽象$\Rightarrow$：
-\begin{equation}
-S = \int L(f(x),f'(x),x)\mathrm{d}x
-\end{equation}
-待求函数$f(x)$，使得$S$取极值。数学上这种函数叫做泛函。
-
-\subsection{Euler-Lagrange方程}
-求以下泛函的极值：
-\begin{equation}
-S = \int_{x_1}^{x_2} L(f(x),f'(x))\mathrm{d}x
-\end{equation}
-函数极值问题启示我们应该在极值函数上尝试做微小改变。
-
-目标极值函数$f_0(x)$，微小改变$|\delta(x)|\ll1$，其中微小改变$\delta(x) = \epsilon \eta(x),\epsilon\rightarrow0$且$\eta(x)$为任意函数。又在端点处应满足：$\delta(x_1) = \delta(x_2) = 0$，所以$\eta(x_1) = \eta (x_2) = 0$，此时有：
-\begin{equation}
-S = \int_{x_1}^{x_2}L(f,f')\mathrm{d}x \ge S' = \int_{x_1}^{x_2}L(f+\epsilon\eta,f'+\epsilon\eta')\mathrm{d}x
-\end{equation}
-可将$S$看作$\epsilon$的函数$S(\epsilon)$，在$\epsilon=0$时取极值。即：
-\begin{align*}
-S'(\epsilon) &= 0\\
-             &= \int_{x_1}^{x_2} \left[ \frac{\partial L}{\partial(f+\epsilon\eta)} \cdot \frac{\partial(f+\epsilon\eta)}{\partial\epsilon} + \frac{\partial L}{\partial(f'+\epsilon\eta')} \cdot \frac{\partial(f'+\epsilon\eta')}{\epsilon} \right] \mathrm{d}x\\
-             &= \int_{x_1}^{x_2} \left( \frac{\partial L}{\partial f} \cdot \eta + \frac{\partial L}{\partial f'} \cdot \eta' \right)\mathrm{d}x\\
-             &= \int_{x_1}^{x_2}  \frac{\partial L}{\partial f} \cdot \eta \mathrm{d}x + \left. \frac{\partial L}{f'} \cdot \eta \right|_{x_1}^{x_2} - \int_{x_1}^{x_2} \left(\frac{\partial L}{f'}\right)'\cdot \eta \mathrm{d}x\\
-             &= \int_{x_1}^{x_2} \left[ \frac{\partial L}{\partial f} - \left(\frac{\partial L}{\partial f'}\right)' \right] \cdot \eta \mathrm{d}x = 0
-\end{align*}
-因为$\eta(x)$是任意函数，所以：
-\begin{equation}
-\frac{\partial L}{\partial f} - \frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\partial L}{\partial f'}\right) = 0
-\end{equation}
-此即Euler-Lagrange方程。
-
-\[S = \int L \mathrm{d}t\]
-$S$：作用量(Action)，$L$：拉格朗日量(Lagrangian)
-
-！！！！！为何要求在端点处应满足：$\delta(x_1) = \delta(x_2) = 0$，即$\eta(x_1) = \eta (x_2) = 0$！！！！！
-
-\subsection{路径积分的权重因子}
-
-粒子从A到B有多个路径，对每个路径有相应的作用量$S$，每个作用量赋予其一个权重因子：
-\[e^{i\frac{S}{\hbar}}\]
-对所有路径求和：
-\[\sum_{\text{所有路径}}e^{i\frac{S}{\hbar}}\]
-此即路径积分因子。<态和态之间的投影因子。>
-
-\subsection{E-L方程应用举例}
-
-\begin{enumerate}
-	\item 
-		证明：两点间直线最短。
-		
-		证明：任意两点间距离：
-		\[\Delta L^2 = \Delta x^2 + \Delta y^2\]
-		作用量为：
-		\[S = \int_{A}^{B} \mathrm{d}L = \int_{A}^{B} \sqrt{\mathrm{d}x^2+\mathrm{d}y^2} = \int_{x_A}^{x_B} \sqrt{1 + y'^2} \mathrm{d}x\]
-		代入E-L方程：
-		\[\frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{\partial \sqrt{1 + y'^2}}{\partial y'} \right) = 0\]
-		所以：
-		\[\frac{y'}{\sqrt{1 + y'^2}} = C_1 \]
-		即：
-		\[y' = constant\]
-		此即两点间直线最短。\\
-	\item
-		最小用料问题：优化圆台的侧面使得其侧面面积最小。如图。
-		\begin{figure}
-			\centering
-			\subfigure{\includegraphics[width=6cm]{Figures/chimney.pdf}}
-			\subfigure{\includegraphics[width=4.7cm]{Figures/chimneysol.pdf}}
-			\caption{最小用料问题}
-		\end{figure}
-		其作用量为：
-		\[S = \int_{r_1}^{r_2} 2\pi \sqrt{1+y'^2}\mathrm{d}x\]
-		代入E-L方程可得：
-		\[\frac{\mathrm{d}}{\mathrm{d}x} \left( \frac{2\pi x y'}{\sqrt{1+y'^2}} \right) = 0\]
-		所以：
-		\[\frac{x y'}{\sqrt{1+y'^2}} = C_1\]
-		即：
-		\[y' = \frac{C_1}{\sqrt{x^2-C_1^2}}\]
-		所以可以解得：
-		\begin{equation}
-		\left\{
-		\begin{array}{c}
-		y = \mathrm{arccosh} \frac{x}{C_1} + C_2\\
-		x= C_1 \cosh (y-C_2) 
-		\end{array}
-		\right.
-		\end{equation}
-		
-		由端点可以确定$C_1,C_2$。
-	\item
-		给定$z^2 = 8(x^2+y^2)$求连接其上任意两点A,B的曲线方程。
-		
-		解：采用柱坐标$(z,r,\theta)$，曲面方程变为：$z=8r^2$，曲面上微元的长度：
-		\[\mathrm{d}l^2 = 9\mathrm{d}r^2+r^2\mathrm{d}\theta^2\]
-		曲线长度：
-		\[L = \int_{A}^{B} \mathrm{d}L = \int_{A}^{B}\sqrt{9\mathrm{d}r^2+r^2\mathrm{d}\theta^2} = \int_{A}^{B}\sqrt{9+r^2\theta'^2}\mathrm{d}r\]
-		代入E-L方程：
-		\[\frac{\mathrm{d}}{\mathrm{d}\theta}\left( \frac{\partial L}{\partial \theta'} \right) = \frac{\mathrm{d}}{\mathrm{d}\theta}\left( \frac{r^2\theta'}{\sqrt{9+r^2\theta'^2}} \right) =0\]
-		所以：
-		\[\frac{r^2\theta'}{\sqrt{9+r^2\theta'^2}} = k\]
-		所以：
-		\[\theta' = \frac{3k}{r\sqrt{r^2-k^2}}\]
-		所以：
-		\begin{equation}
-		\left\{
-		\begin{array}{c}
-		r\cos \left(\frac{\theta+\alpha}{3}\right) = k\\
-		z = 2\sqrt{2}r
-		\end{array}
-		\right.
-		\end{equation}
-		其中$\alpha,k$为待定常数。
-\end{enumerate}
-
-\subsection{理论力学框架}
-
-\begin{tikzpicture}
-	\node[above](A) at (0,0) {极值问题};
-	\node[below,left](B) at (-1,-1){E-L方程} ;
-	\node[below,right](C) at (1,-1) {牛顿力学，量子力学...};
-	\draw[<->] (A) -- (B);
-	\draw[<->] (B) -- (C);
-	\draw[<->] (C) -- (A);
-\end{tikzpicture}
-
-\subsubsection{改造牛顿第二定律}
 
 
 

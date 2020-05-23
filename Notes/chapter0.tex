@@ -50,7 +50,7 @@ No pain, no gain.
 	\node[shape=rectangle](g) at (3,-2.55){量子电动力学};
 	\node[shape=rectangle](h) at (3,-2.97){量子引力};
 	\node[shape=rectangle](i) at (0,-3.6){etc...};
-	\node[shape=rectangle,color=red](j) at (-2.5,-2.34){理论物理};
+	\node[shape=rectangle,color=red](j) at (-2.5,-2.34){理论物理基础};
 	\draw[->] (a) -- node[color=red,pos=0.25,left=33]{基础物理}(b);
 	\draw[->] (d) -- (1.9,-2.55);
 	\draw[->] (e) -- (1.9,-2.55);
@@ -67,7 +67,7 @@ No pain, no gain.
 
 \section{先修知识}
 
-\[f^\prime(x), \ \int e^x \mathrm{d}x = e^x+C, \ \log^\prime x = \frac{1}{x}, \ \epsilon-\delta\text{语言}\]
+\[f^\prime(x), \quad \int e^x \dd x  = e^x+C, \quad \log^\prime x = \frac{1}{x}, \quad \epsilon-\delta\text{语言}\]
 
 \subsubsection{6个初等函数}
 \begin{enumerate}[fullwidth,itemindent=2em,label=(\arabic*)]
@@ -80,24 +80,23 @@ No pain, no gain.
 \end{enumerate}
 
 双曲余弦：
-\[\cosh x \equiv \frac{e^x+e^-x}{2}\]
-$\leftrightarrow$余弦函数：
+\[\cosh x \equiv \frac{e^x+e^{-x}}{2}\]
+对应$\leftrightarrow$余弦函数：
 \[\cos x \equiv \frac{e^{ix}+e^{-ix}}{2}\]
 
 \subsubsection{Taylor展开}
 \begin{equation}
 f(x) = f(0)+f^\prime(0)x+\frac{f^{\prime\prime}(0)}{2!}x^2+...+\frac{f^{(n)}(x)}{n!}x^n+...
 \end{equation}
-$\leftrightarrow x = x_0+vt+\frac{a}{2}t^2$
+回忆匀变速直线运动公式：$x = x_0+vt+\frac{a}{2}t^2$
 
 \subsubsection{分部积分}
 \begin{equation}
-\int_{x_1}^{x_2} f^\prime(x)g(x)\mathrm{d}x = \left.f(x)g(x)\right|_{x_1}^{x_2} - \int_{x_1}^{x_2} f(x)g^\prime(x)\mathrm{d}x
+\int_{x_1}^{x_2} f^\prime(x)g(x)\dd x = \left.f(x)g(x)\right|_{x_1}^{x_2} - \int_{x_1}^{x_2} f(x)g^\prime(x)\dd x
 \end{equation}
 
 \begin{figure}
 	\centering
-	\caption{分部积分示意图}
 	\begin{tikzpicture}
 		\draw[->] (-0.2,0) -- (4,0) node[right]{$g(x)$};
 		\draw[->] (0,-0.2) -- (0,4) node[above]{$f(x)$};
@@ -111,22 +110,23 @@ $\leftrightarrow x = x_0+vt+\frac{a}{2}t^2$
 		\draw (3.7,3.7) -- (3.7,0);
 		\draw (3.7,3.7) -- (0,3.7);
 	\end{tikzpicture} 
+	\caption{分部积分示意图}
 \end{figure}
 
 \subsubsection{微分方程}
 受迫阻尼振动：
 \[m \ddot{x} = -kx-\gamma \ddot{x}+F(t)\]
-Schrodinger equation:
+Schrödinger方程:
 \[i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \frac{\partial^2 \psi}{\partial x^2}+V\psi\]
 
 \subsubsection{卷积}
 \begin{align}
-k(t) = \int_{x_1}^{x_2} f(x) g(t-x) \mathrm{d}x \equiv f*g\\
+k(t) = \int_{x_1}^{x_2} f(x) g(t-x) \dd x  \equiv f*g\\
 (f*g)*h = f*(g*h)
 \end{align}
 
-\subsubsection{高数中难理解的问题}
-
+\subsubsection{高等数学中难理解的问题}
+Q：$f(x)$在0点光滑，$f^{(n)} = 0$，Taylor展开之后：$f(x) = 0$？
 \[
 f(x) = \left\{
 \begin{array}{lc}
@@ -138,16 +138,19 @@ e^{-\frac{1}{x^2}} & (x \neq 0)\\
 
 \begin{figure}
 	\centering
-	\includegraphics[width=3.95cm]{Figures/Exp[-x^-2].pdf}
+	\includegraphics[width=14cm]{Figures/Exp[-x^-2].pdf}
+	\caption{\(f(x)\)图像}
 \end{figure}
 
-$f(x)$在0点光滑，$f^{(n)} = 0$，Taylor展开之后：$f(x) = 0$\\
-复变函数中：
+A：在复变函数中
 \[f(z)=e^{-\frac{1}{z^2}}\]
 在$z = 0$有本性奇点，展开半径为0，故不能Taylor展开，但可以用Laurent展开。
 
-\[f(x)=\frac{1}{1+x^2}\]
-Taylor展开的收敛区域为$(-1,1)$.在复数域看：$f(z)=\frac{1}{1+z^2}$在$\pm i$为奇点！所以展开半径为1，只能在$(-1,1)$展开。
+Q：为何函数
+\[g(x)=\frac{1}{1+x^2}\]
+Taylor展开的收敛区域为$(-1,1)$?
+
+A：在复数域看：$g(z)=\frac{1}{1+z^2}$在$\pm i$为奇点！所以展开半径为1，只能在$(-1,1)$展开。
 
 
 

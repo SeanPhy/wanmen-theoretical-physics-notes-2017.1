@@ -11,7 +11,7 @@
 	\item 复杂的实积分： $\int_{-\infty}^{\infty}\cos t^2 \mathrm{d}t$
 	\item 级数： $\sum_{n=1}^{+\infty}\sin n\theta = \frac{r\sin \theta}{1+r^2-2r\cos \theta}$
 	\item $\sum_{n=0}^{+\infty}\frac{\binom{2n}{n}}{7^n} = \sqrt{\frac{7}{3}}$
-	\item $f(x) = \frac{1}{1+x^2}$的Taylor展开只能在区间$(-1,1)$中收敛。
+	\item 解释为何$f(x) = \frac{1}{1+x^2}$的Taylor展开只能在区间$(-1,1)$中收敛。
 \end{enumerate}
 
 	复数有非常广的应用范围,如：
@@ -20,15 +20,23 @@
 		\begin{equation}
 			\mathrm{i}\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V\psi
 		\end{equation}
-		\item Fourier变换：
+		\item Fourier变换\footnote{这种形式的Fourier变换更加对称，容易记忆，然而物理中更广为应用的形式为：
+		\[\left\{
+			\begin{array}{ll}
+			G(k) &= \int_{-\infty}^{\infty}f(x)e^{\mathrm{i}kx}\mathrm{d}x\\
+			f(x) &= \frac{1}{2\pi}\int_{-\infty}^{\infty}G(k)e^{-\mathrm{i}kx}\mathrm{d}k
+			\end{array}
+			\right.\]
+			不难证明这两种形式的Fourier变换是等价的。}
 		\begin{equation}
 			\left\{
 			\begin{array}{ll}
 			G(k) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{\mathrm{i}kx}\mathrm{d}x\\
-			f(x) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}G(k)e^{-\mathrm{i}kx}\mathrm{d}x
+			f(x) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}G(k)e^{-\mathrm{i}kx}\mathrm{d}k
 			\end{array}
 			\right.
 		\end{equation}
+		
 		\item Laplace变换：
 		\begin{equation}
 		\left\{
@@ -152,11 +160,11 @@ rr'=n
 \textbf{思考：还有哪些正$n$边形可以类似的求解？}
 
 \section{复变函数}
-复变函数$z\in\mathbb{C},f(z)\in\mathbb{C}$。可以重新表示为$z=x+\mathrm{i}y,f(z)=u(x,y)+\mathrm{i}v(x,y);x,y,u,v\in\mathbb{R}$，这样一对$u(x,y),v(x,y)$就唯一确定了一个复变函数$f(z)$。
+复变函数$z\in\mathbb{C},\ f(z)\in\mathbb{C}$，可以重新表示为$z=x+\mathrm{i}y,\ f(z)=u(x,y)+\mathrm{i}v(x,y);\ x,y,u,v\in\mathbb{R}$，这样一对$u(x,y),v(x,y)$就唯一确定了一个复变函数$f(z)$。
 \subsection{极限、连续、导数的定义}
 定义：若$f(z)$在$z\rightarrow z_0$时有极限$L$:
 \[\lim\limits_{z\rightarrow z_0}f(z) = L\]
-则$\forall\epsilon,\exists\delta$ s.t. 当$\left|z-z_0\right|<\delta$，有$\left|f(z)-L\right|<\epsilon$
+则$\forall\epsilon,\ \exists\delta$ 使得当$\left|z-z_0\right|<\delta$，有$\left|f(z)-L\right|<\epsilon$
 
 定义：$f(z)$在$z_0$处连续,若：
 \begin{equation}
